@@ -1,0 +1,130 @@
+<!doctype html>
+
+<html data-tone="lilac" lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="#eeedf5" name="theme-color"/>
+<meta content="light" name="color-scheme"/>
+<meta content="ほしのひと田中の個人サイト。VRChat向け3Dアイテム、ソフトウェア、音声データ、Beat Saber、Twitch配信、技術記事など。" name="description"/>
+<meta content="website" property="og:type"/>
+<meta content="ほしのひと / personal homepage" property="og:title"/>
+<meta content="3D、ソフトウェア、配信、Beat Saber、音声。制作物と公開先を掲載した個人サイト。" property="og:description"/>
+<link href="assets/favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Zen+Maru+Gothic:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="style.css" rel="stylesheet"/>
+<script defer="" src="data/content.js"></script><script defer="" src="data/twitter-snapshot.js"></script><script defer="" src="script.js"></script><script defer="" src="ui-sound.js"></script>
+<title>ほしのひと / personal homepage</title>
+</head>
+<body>
+<a class="skip-link" href="#main">本文へ</a>
+<div aria-hidden="true" class="effects" id="effects"></div>
+<div class="site-wrap" id="top">
+<div aria-hidden="true" class="window-bar"><span class="window-lights"><i></i><i></i><i></i></span><span>hoshinohito / personal homepage</span><span aria-live="off" class="window-greeting" id="time-greeting">いらっしゃいませ。</span><span class="window-ornament">✦　⌁　✦</span></div>
+<header class="site-header">
+<a aria-label="ページの先頭へ" class="brand" href="#top"><span aria-hidden="true" class="brand-icon">✳</span><span><strong>ほしのひと</strong><small>personal homepage · 田中</small></span></a>
+<nav aria-label="ページ内メニュー" class="top-nav"><a href="#works">制作物</a><a href="#activity">活動</a><a href="#writing">読みもの</a><a href="#links">リンク</a></nav>
+<div class="toolbar"><button aria-label="配色を変更する" class="tool-button" id="tone-button" title="配色を変更する" type="button"><span aria-hidden="true" class="dot-pair"><i></i><i></i></span> 色</button><button aria-label="星とカーソルの装飾を切り替える" aria-pressed="true" class="tool-button" id="effect-button" title="星とカーソル装飾の切り替え" type="button">✧ 光</button><button aria-label="効果音を切り替える" aria-pressed="true" class="tool-button" id="sound-button" title="効果音の切り替え" type="button">♫ 音</button><label class="sound-volume-wrap" title="効果音の音量"><span class="sr-only">効果音の音量</span><input type="range" id="sound-volume" min="0" max="100" step="5" value="30" aria-label="効果音の音量"></label></div>
+</header>
+<div aria-hidden="true" class="marquee-line"><span>✧</span><span>VRCHAT</span><b>·</b><span>3D</span><b>·</b><span>CODE</span><b>·</b><span>BEAT SABER</span><b>·</b><span>VOICE</span><b>·</b><span>TWITCH</span><span>✧</span></div>
+<div class="content-layout">
+<aside aria-label="プロフィール・サイト内メニュー" class="sidebar">
+<section class="side-panel about-panel">
+<h2 class="side-heading"><span aria-hidden="true" class="side-diamond">◇</span> ABOUT ME <span class="side-end">✧</span></h2>
+<div class="side-profile">
+<div class="profile-emblem"><img alt="Twitterのプロフィールアイコン" decoding="async" loading="lazy" src="https://pbs.twimg.com/profile_images/1612399140432130050/uIvCOBA0_400x400.jpg"/><span aria-hidden="true">✳</span><i></i></div>
+<div><strong>ほしのひと田中</strong><span>hoshinohito / tanaka</span></div>
+</div>
+<p>3Dモデル・ソフトウェア制作、VRChat、ゲーム、配信など。</p>
+<div class="interest-tags"><span>Blender</span><span>Unity</span><span>VRChat</span><span>Beat Saber</span><span>Programming</span></div>
+</section>
+<nav aria-label="サイトマップ" class="side-panel side-nav">
+<h2 class="side-heading"><span aria-hidden="true" class="side-diamond">◇</span> SITE MAP <span class="side-end">⌁</span></h2>
+<a href="#top"><span class="nav-mark">⌂</span> はじめに <small>01</small></a>
+<a href="#works"><span class="nav-mark">▦</span> 作品展示 <small>02</small></a>
+<a href="#activity"><span class="nav-mark">✧</span> 活動 <small>03</small></a>
+<a href="#writing"><span class="nav-mark">✎</span> 読みもの <small>04</small></a>
+<a href="#links"><span class="nav-mark">↗</span> リンク集 <small>05</small></a>
+</nav>
+<section class="side-panel side-recent"><h2 class="side-heading"><span aria-hidden="true" class="side-diamond">◇</span> RECENT WORK <span class="side-end">✧</span></h2>
+<ol class="recent-list" id="recent-list"><li class="recent-pending">活動履歴を読み込み中…</li></ol>
+<p class="recent-foot" id="recent-status">手動記録 + 公開更新</p></section>
+<section aria-label="時刻・天気・地震情報" class="side-panel side-live">
+<h2 class="side-heading"><span aria-hidden="true" class="side-diamond">◇</span> NOW / WEATHER <span class="side-end">☾</span></h2>
+<div class="clock-display"><time datetime="" id="jst-clock">--:--</time><span><b id="jst-day">--.--. --</b><small>JST / 日本時間</small></span></div>
+<div class="weather-line"><label for="weather-city">天気</label><select aria-label="天気の地域" id="weather-city"></select><output id="weather-display">取得中…</output></div><div class="weather-status"><span id="weather-source">現在の情報を確認中</span><a href="https://www.jma.go.jp/bosai/forecast/" target="_blank" rel="noopener noreferrer">気象庁 ↗</a></div>
+<div class="quake-box"><span class="data-label">直近の地震情報</span><p id="quake-display">取得中…</p><small id="quake-time"></small></div>
+<div class="live-links"><a href="https://www.jma.go.jp/bosai/" rel="noopener noreferrer" target="_blank">気象庁の防災情報 ↗</a><span>※速報・警報ではありません</span></div>
+<div class="live-credit">天気: <a href="https://open-meteo.com/" rel="noopener noreferrer" target="_blank">Open-Meteo</a> / <a href="https://weather.tsukumijima.net/" rel="noopener noreferrer" target="_blank">天気予報 API</a> / 地震: <a href="https://www.p2pquake.com/" rel="noopener noreferrer" target="_blank">P2P地震情報</a></div>
+</section><section aria-label="Twitterの投稿" class="side-panel side-twitter">
+<h2 class="side-heading"><span aria-hidden="true" class="side-diamond">◇</span> TWITTER <span class="side-end">✧</span></h2>
+<div class="twitter-switch" role="group" aria-label="Twitterの表示方法"><button id="twitter-feed-button" type="button" class="is-active" aria-pressed="true">投稿</button><button id="twitter-embed-button" type="button" aria-pressed="false">公式表示</button></div>
+<div class="twitter-content">
+<div id="twitter-feed"><p class="twitter-message">投稿を読み込み中…</p></div>
+<div id="twitter-official" hidden><p class="twitter-embed-tip">ブラウザの追跡防止設定によっては表示されません。</p><a class="twitter-timeline" data-chrome="noheader nofooter transparent" data-dnt="true" data-height="360" data-lang="ja" data-theme="light" href="https://twitter.com/tanakamitaina">公式タイムラインを開く</a></div>
+</div>
+<div class="twitter-bottom"><a href="https://twitter.com/tanakamitaina" rel="noopener noreferrer" target="_blank">Twitterで見る ↗</a><span id="twitter-feed-status">公開投稿の抜粋</span></div>
+</section>
+<div aria-hidden="true" class="mini-banner"><span>✳</span><span>personal website</span><span>✳</span></div>
+</aside>
+<main class="main-content" id="main">
+<section aria-labelledby="welcome-title" class="welcome">
+<div class="welcome-copy">
+<div class="eyebrow"><span aria-hidden="true" class="small-star">✧</span> HOME / 01 <span class="eyebrow-line"></span></div>
+<h1 id="welcome-title">ほしのひと<span aria-hidden="true" class="title-spark">✦</span><small>田中の個人サイト</small></h1>
+<p>VRChat向けの3Dアイテム、プログラム、音声データ、技術メモなどをまとめています。配信やBeat Saberの活動についてもここから。</p>
+<div class="welcome-links"><a href="#works">作品一覧 <span aria-hidden="true">↘</span></a><a href="#links">公開先 <span aria-hidden="true">↗</span></a><span class="welcome-signed">✳ hoshinohito</span></div>
+</div>
+<a aria-label="春のぷくぷく桜飾りのBOOTHページ" class="pick-up" href="https://booth.pm/ja/items/9137355" rel="noopener noreferrer" target="_blank">
+<div class="pick-up-image"><span aria-hidden="true" class="pick-up-fallback">✿</span><img alt="春のぷくぷく桜飾りの商品画像" decoding="async" onerror="this.classList.add('image-error')" referrerpolicy="no-referrer" src="https://booth.pximg.net/b0924371-87b4-45ad-a97e-c2399aff686b/i/9137355/07912100-728c-4a4e-b20e-b00c19bcc71f_base_resized.jpg"/></div>
+<div class="pick-up-caption"><span>NEW WORK · BOOTH</span><strong>春のぷくぷく桜飾り</strong><span aria-hidden="true">↗</span></div>
+</a>
+<span aria-hidden="true" class="welcome-corner">✦</span>
+</section>
+<section aria-labelledby="works-title" class="section" id="works">
+<div class="section-heading"><div><span class="section-number">02 / WORKS</span><h2 id="works-title"><span aria-hidden="true" class="section-icon">✳</span> 作品展示室 <small>works &amp; projects</small></h2></div><span aria-hidden="true" class="heading-flourish">── ✦ ──</span></div>
+<p class="section-note">BOOTHのアイテム、GitHubの公開プロジェクトなど。掲載画像は各作品の公開ページを参照しています。</p>
+<div class="featured-works" id="featured-works" aria-label="ピックアップ作品"><p class="content-loading">ピックアップを表示しています…</p></div>
+<div class="works-controls">
+<div aria-label="作品カテゴリー" class="filters" role="group"><button aria-pressed="true" class="filter is-selected" data-filter="all" type="button">すべて <span>12</span></button><button aria-pressed="false" class="filter" data-filter="booth" type="button">BOOTH <span>6</span></button><button aria-pressed="false" class="filter" data-filter="code" type="button">GitHub <span>6</span></button></div>
+<label class="search-wrap"><span aria-hidden="true" class="search-icon">⌕</span><input aria-label="作品を検索" autocomplete="off" id="work-search" placeholder="作品を検索" type="search"/></label>
+</div>
+<div aria-live="polite" class="results-counter" role="status"><span id="results-count">12</span> 件表示 <span aria-hidden="true" class="results-decor">✧ ✧</span></div>
+<div class="works-grid" id="works-grid"><p class="content-loading">作品一覧を表示しています…</p></div>
+<p class="no-results" hidden="" id="no-results">該当する作品はありません。</p>
+<p class="section-linkline"> <a href="https://hoshinohito.booth.pm/" rel="noopener noreferrer" target="_blank">BOOTHの全商品 ↗</a><span>·</span><a href="https://github.com/hosinohito?tab=repositories" rel="noopener noreferrer" target="_blank">GitHubの全リポジトリ ↗</a></p>
+</section>
+<section aria-labelledby="activity-title" class="section" id="activity">
+<div class="section-heading"><div><span class="section-number">03 / ACTIVITY</span><h2 id="activity-title"><span aria-hidden="true" class="section-icon">✧</span> 活動 <small>activities</small></h2></div><span aria-hidden="true" class="heading-flourish">── ✦ ──</span></div>
+<div class="activity-grid">
+<article class="activity-item"><div aria-hidden="true" class="activity-mark mark-lilac">▣</div><div><span class="activity-label">STREAMING</span><h3>Twitch</h3><p>ゲーム、3D制作、イラスト、電子機器修理、朗読など。</p><a href="https://www.twitch.tv/hoshinohito" rel="noopener noreferrer" target="_blank">配信チャンネル ↗</a></div></article>
+<article class="activity-item"><div aria-hidden="true" class="activity-mark mark-blue">◇</div><div><span class="activity-label">VIRTUAL WORLD</span><h3>VRChat</h3><p>アバター改変、Unity、Shader、3D制作。</p><a href="https://vrchat.com/home/user/usr_c9b8275c-6709-4422-8e3e-9dbbcda6a044" rel="noopener noreferrer" target="_blank">プロフィール ↗</a></div></article>
+<article class="activity-item"><div aria-hidden="true" class="activity-mark mark-mint">♫</div><div><span class="activity-label">RHYTHM GAME</span><h3>Beat Saber</h3><p>譜面の認識、配置、練習について。関連メモも公開中。</p><a href="https://note.com/tanakamitaina" rel="noopener noreferrer" target="_blank">記事一覧 ↗</a></div></article>
+<article class="activity-item"><div aria-hidden="true" class="activity-mark mark-rose">◌</div><div><span class="activity-label">VOICE / SOUND</span><h3>音声データ</h3><p>UTAU向け音声データと、公開中の「声」フォルダ。</p><div class="activity-links"><a href="https://github.com/hosinohito/hosinohitoVoiceDataforUTAU" rel="noopener noreferrer" target="_blank">UTAU ↗</a><a href="https://drive.google.com/drive/folders/1kLXEXleZ7wo10DLNhcP_Fp5YZw0Zp8c1" rel="noopener noreferrer" target="_blank">Google Drive ↗</a></div></div></article>
+</div>
+</section>
+<section aria-labelledby="writing-title" class="section" id="writing">
+<div class="section-heading"><div><span class="section-number">04 / NOTES</span><h2 id="writing-title"><span aria-hidden="true" class="section-icon">✎</span> 読みもの <small>articles &amp; notes</small></h2></div><span aria-hidden="true" class="heading-flourish">── ✦ ──</span></div>
+<div class="notes-list"><p class="content-loading">記事一覧を表示しています…</p></div>
+<p class="section-linkline"><a href="https://note.com/tanakamitaina" rel="noopener noreferrer" target="_blank">noteの記事一覧 ↗</a></p>
+</section>
+<section aria-labelledby="links-title" class="section" id="links">
+<div class="section-heading"><div><span class="section-number">05 / LINKS</span><h2 id="links-title"><span aria-hidden="true" class="section-icon">↗</span> リンク集 <small>outside links</small></h2></div><span aria-hidden="true" class="heading-flourish">── ✦ ──</span></div>
+<ul class="links-list">
+<li><a href="https://x.com/tanakamitaina" rel="noopener noreferrer" target="_blank"><span class="platform">Twitter</span><strong>@tanakamitaina</strong><span aria-hidden="true" class="mini-arrow">↗</span></a></li>
+<li><a href="https://hoshinohito.booth.pm/" rel="noopener noreferrer" target="_blank"><span class="platform">BOOTH</span><strong>たなかや</strong><span aria-hidden="true" class="mini-arrow">↗</span></a></li>
+<li><a href="https://github.com/hosinohito" rel="noopener noreferrer" target="_blank"><span class="platform">GitHub</span><strong>hosinohito</strong><span aria-hidden="true" class="mini-arrow">↗</span></a></li>
+<li><a href="https://www.twitch.tv/hoshinohito" rel="noopener noreferrer" target="_blank"><span class="platform">Twitch</span><strong>hoshinohito</strong><span aria-hidden="true" class="mini-arrow">↗</span></a></li>
+<li><a href="https://vrchat.com/home/user/usr_c9b8275c-6709-4422-8e3e-9dbbcda6a044" rel="noopener noreferrer" target="_blank"><span class="platform">VRChat</span><strong>プロフィール</strong><span aria-hidden="true" class="mini-arrow">↗</span></a></li>
+<li><a href="https://note.com/tanakamitaina" rel="noopener noreferrer" target="_blank"><span class="platform">note</span><strong>tanakamitaina</strong><span aria-hidden="true" class="mini-arrow">↗</span></a></li>
+<li><a href="https://drive.google.com/drive/folders/1kLXEXleZ7wo10DLNhcP_Fp5YZw0Zp8c1" rel="noopener noreferrer" target="_blank"><span class="platform">Google Drive</span><strong>声</strong><span aria-hidden="true" class="mini-arrow">↗</span></a></li>
+</ul>
+</section>
+</main>
+</div>
+<footer class="site-footer"><span aria-hidden="true">✧ · ✳ · ✧</span><p>ほしのひと田中 / personal homepage</p><small>© hoshinohito</small></footer>
+</div>
+</body>
+</html>

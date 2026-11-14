@@ -1,0 +1,46 @@
+# Optional: copy this file to .github/workflows/twitter-auto-update.yml
+# and set GitHub Pages -> Build and deployment -> Source: GitHub Actions.
+# Builds on push and every 6 hours, no token/secret required for FxTwitter.
+name: Twitter snapshot + Pages
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: '17 */6 * * *'
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Refresh public posts (previous data kept on failure)
+        continue-on-error: true
+        run: python tools/update_twitter.py
+      - name: Save fetched posts
+        run: |
+          git config user.name "portfolio-updater"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/twitter-snapshot.js
+          if ! git diff --cached --quiet; then
+            git commit -m "Update public Twitter snapshot"
+            git push
+          fi
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: .
+      - id: deployment
+        uses: actions/deploy-pages@v4
