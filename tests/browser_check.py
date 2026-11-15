@@ -192,6 +192,12 @@ with sync_playwright() as p:
     city_html=html.replace(fetch_stub,fetch_stub.replace(oldline,city_line))
     city_context,city_page=origin_page(city_html)
     city_page.wait_for_function('document.querySelector("#weather-display").textContent.includes("16.1°C")')
+    tokyo_fetched_at=city_page.evaluate('JSON.parse(localStorage.getItem("hoshinohito-weather-current-v1-tokyo")).at')
+    city_page.locator('#weather-city').select_option('sapporo')
+    city_page.wait_for_function('document.querySelector("#weather-display").textContent.includes("-2.5°C")')
+    city_page.locator('#weather-city').select_option('tokyo')
+    city_page.wait_for_function('document.querySelector("#weather-display").textContent.includes("16.1°C")')
+    assert city_page.evaluate('JSON.parse(localStorage.getItem("hoshinohito-weather-current-v1-tokyo")).at')==tokyo_fetched_at, 'A session cache hit must retain the actual fetch time'
     city_page.locator('#weather-city').select_option('sapporo')
     city_page.wait_for_function('document.querySelector("#weather-display").textContent.includes("-2.5°C")')
     assert city_page.evaluate('localStorage.getItem("hoshinohito-weather-city")')=='sapporo'
