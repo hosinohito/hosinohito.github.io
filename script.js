@@ -248,15 +248,15 @@
   renderRecent();
   loadStatus('掲載履歴から表示中');
 
-  function cachedJSON(key,ttl){
+  function cachedJSON(key,ttl,withTimestamp=false){
     try{
       const value=JSON.parse(sessionStorage.getItem(key) || 'null');
-      return value && Date.now()-value.savedAt<ttl ? value.data : null;
+      return value && Number.isFinite(value.savedAt) && value.savedAt<=Date.now() && Date.now()-value.savedAt<ttl ? (withTimestamp?value:value.data) : null;
     }catch{return null;}
   }
-  function cacheJSON(key,data){ try{sessionStorage.setItem(key,JSON.stringify({savedAt:Date.now(),data}));}catch{} }
-  async function fetchJSON(url, key, minutes=20, timeoutMs=8000){
-    const hit = cachedJSON(key,minutes*60000);
+  function cacheJSON(key,data,savedAt){ try{sessionStorage.setItem(key,JSON.stringify({savedAt,data}));}catch{} }
+  async function fetchJSON(url, key, minutes=20, timeoutMs=8000, withTimestamp=false){
+    const hit = cachedJSON(key,minutes*60000,withTimestamp);
     if(hit!==null)return hit;
     const controller = new AbortController();
     const timeout = setTimeout(()=>controller.abort(),timeoutMs);
@@ -264,8 +264,9 @@
       const response = await fetch(url, {signal:controller.signal,cache:'no-cache',headers:{'Accept':'application/json'}});
       if(!response.ok)throw new Error('HTTP '+response.status);
       const result = await response.json();
-      cacheJSON(key,result);
-      return result;
+      const savedAt=Date.now();
+      cacheJSON(key,result,savedAt);
+      return withTimestamp?{data:result,savedAt}:result;
     } finally {clearTimeout(timeout);}
   }
 
@@ -458,36 +459,36 @@
   twitterFeedButton?.addEventListener('click',()=>setTwitterMode('feed'));
   twitterEmbedButton?.addEventListener('click',()=>setTwitterMode('official'));
 
-  // JAPAN CLOCK + VARIED GREETINGS: short, somewhat playful lines without
-  // slogans. Greeting is stable for every 20-minute block, not a blinking ticker.
+  // JAPAN CLOCK + GREETINGS: everyday questions and a few words of thanks.
+  // Greeting is stable for every 20-minute block, not a blinking ticker.
   const greetings = {
     night: [
-      '夜のサイト巡回、おつかれさまです。','夜のネットは、まだ少し静か。','こんな時間にも来客が。','こっそり開いてくれてどうも。',
-      '深夜便、こちらに到着です。','星がきれいそうな時間です。','夜更かしのおともにどうぞ。','まだ眠くない方はこちら。'
+      '夜遅くまでおつかれさまです。','まだ起きてましたか？',
+      '夜更かし中ですか？','そろそろ眠くなってきましたか？'
     ],
     dawn: [
-      'ずいぶん早いご訪問。','朝になる前に、ようこそ。','今日は早起きですね。','静かな朝が始まりそう。',
-      '夜と朝のすき間から。','最初のコーヒーはまだですか。','朝焼けを見ましたか？','朝の準備をする時間です。'
+      'おはようございます。よく眠れましたか？','早起きですか？ それとも夜更かし？',
+      '朝早くからおつかれさまです。','これからお休みの方は、おつかれさまでした。'
     ],
     morning: [
-      'おはようございます、どうぞ。','朝の巡回ありがとうございます。','今日もブラウザは開いている。','朝の寄り道にいかがでしょう。',
-      'まずは作品をひとつ。','朝から来てくれたんですね。','晴れでも雨でも、ようこそ。','午前中のご来場です。'
+      'おはようございます。朝ごはんは食べましたか？','今日はどんな予定ですか？',
+      'もうお出かけですか？','朝から来てくれてありがとうございます。'
     ],
     noon: [
-      'お昼のついでにどうぞ。','休憩中ですか？','午後もぼちぼちいきましょう。','お昼どきの訪問者さん。',
-      'お茶でも飲みながらどうぞ。','ここにも昼休みが来ました。','少し遠回りしていきませんか。','ご飯は食べましたか？'
+      'お昼はもう食べましたか？','今日は何を食べますか？',
+      '今はお昼休みですか？','午前中、おつかれさまでした。'
     ],
     afternoon: [
-      '午後の寄り道、どうぞ。','そろそろおやつの時間？','夕方前の静かなひととき。','作業の合間にどうぞ。',
-      'なんとなく来てくれたなら正解。','午後のネット散歩ですね。','ちょっと一息つきませんか。','だんだん夕方の色です。'
+      'そろそろ一息入れませんか？','おやつは何にしますか？',
+      '作業の合間ですか？ おつかれさまです。','午後はどう過ごしていますか？'
     ],
     evening: [
-      'こんばんは。夕方の訪問です。','一日の終わりに、どうぞ。','夕暮れの時間ですね。','ごはん前の寄り道ですか？',
-      '今日の作業は進みましたか。','おかえりなさい、ネットの片隅へ。','日が暮れて、サイトは通常営業。','そろそろ夜の散歩です。'
+      '今日もおつかれさまです。','晩ごはんは何にしますか？',
+      'このあとは、ゆっくりできそうですか？','今夜は何をして過ごしますか？'
     ],
     late: [
-      '夜の閲覧、ありがとうございます。','今日の締めくくりに少しだけ。','夜の部、開いています。','眠る前にひと巡り。',
-      'こんなところまで辿り着きましたね。','今夜も良いネット散歩を。','一日が静かになってきました。','そろそろ星の時間です。'
+      '今日も一日おつかれさまでした。','今日はどんな一日でしたか？',
+      '寝る前に見に来てくれたんですか？','今はのんびりできていますか？'
     ]
   };
   const jstClock=byId('jst-clock');
@@ -519,71 +520,93 @@
   updateClock();
   window.setInterval(updateClock,30000);
 
-  // WEATHER: Open-Meteo first, Tsukumijima/JMA forecast as a second provider.
-  // Last valid data is saved locally and clearly marked as old when offline.
+  // WEATHER: current conditions only, with wttr.in as the alternate provider.
+  // Current-weather caches are separate from the old daily-forecast cache.
   // No geolocation permission and no backend are needed.
   const citySelect=byId('weather-city');
   const weatherDisplay=byId('weather-display');
   const weatherSource=byId('weather-source');
   const cities=Array.isArray(settings.weatherCities)?settings.weatherCities:[];
+  const weatherRefreshMinutes=Number.isFinite(settings.refreshMinutes) && settings.refreshMinutes>0 ? settings.refreshMinutes : 20;
   let weatherSequence=0;
   function readableWeather(code){
     if(code===0)return '快晴';
     if(code===1)return '晴れ';
-    if(code===2)return '晴れ時々曇り';
+    if(code===2)return '晴れ・雲あり';
     if(code===3)return '曇り';
     if([45,48].includes(code))return '霧';
     if([51,53,55,56,57].includes(code))return '霧雨';
     if([61,63,65,66,67,80,81,82].includes(code))return '雨';
     if([71,73,75,77,85,86].includes(code))return '雪';
-    if([95,96,99].includes(code))return '雷雨';
-    return '天気';
+    if([95,96,97,99].includes(code))return '雷雨';
+    return '';
+  }
+  // wttr.in uses WorldWeatherOnline codes, not Open-Meteo's WMO codes.
+  function readableWttrWeather(code){
+    if(code===113)return '晴れ';
+    if(code===116)return '晴れ間あり';
+    if([119,122].includes(code))return '曇り';
+    if(code===143)return 'もや';
+    if([248,260].includes(code))return '霧';
+    if([185,263,266,281,284].includes(code))return '霧雨';
+    if([176,293,296,299,302,305,308,311,314,353,356,359].includes(code))return '雨';
+    if([179,323,326,329,332,335,338,368,371].includes(code))return '雪';
+    if([182,317,320,350,362,365,374,377].includes(code))return '凍雨';
+    if([227,230].includes(code))return '吹雪';
+    if(code===200)return '雷';
+    if([386,389].includes(code))return '雷雨';
+    if([392,395].includes(code))return '雷を伴う雪';
+    return '';
   }
   function setWeather(message,source,title=''){
     if(weatherDisplay){weatherDisplay.textContent=message;weatherDisplay.title=title;}
     if(weatherSource)weatherSource.textContent=source;
   }
-  function weatherCacheKey(city){return 'hoshinohito-weather-last-'+city.id;}
-  function saveWeather(city,message,source,title){
-    memoSet(weatherCacheKey(city),JSON.stringify({at:Date.now(),message,source,title}));
+  function weatherCacheKey(city){return 'hoshinohito-weather-current-v1-'+city.id;}
+  function saveWeather(city,message,source,title,at){
+    memoSet(weatherCacheKey(city),JSON.stringify({kind:'current',at,message,source,title}));
   }
   function previousWeather(city){
     try{
       const old=JSON.parse(memoGet(weatherCacheKey(city))||'null');
-      if(!old || !Number.isFinite(old.at) || Date.now()-old.at>6*60*60*1000 || typeof old.message!=='string')return false;
+      if(old?.kind!=='current' || !Number.isFinite(old.at) || old.at>Date.now() || Date.now()-old.at>6*60*60*1000 || typeof old.message!=='string')return false;
       const at=new Intl.DateTimeFormat('ja-JP',{timeZone:'Asia/Tokyo',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'}).format(new Date(old.at));
       setWeather('前回 '+old.message,`前回取得 ${at}（通信失敗）`,old.title||'');
       return true;
     }catch{return false;}
   }
-  async function updateWeather(city){
+  async function updateWeather(city,forceRefresh=false){
     if(!weatherDisplay || !city)return;
     const seq=++weatherSequence;
     setWeather('取得中…','天気を確認中');
     try{
-      const params=new URLSearchParams({latitude:String(city.latitude),longitude:String(city.longitude),current:'temperature_2m,weather_code',timezone:'Asia/Tokyo',forecast_days:'1'});
-      const current=await fetchJSON(`https://api.open-meteo.com/v1/forecast?${params}`,'weather-openmeteo-'+city.id,settings.refreshMinutes||20,5000);
-      const w=current?.current;
-      if(typeof w?.temperature_2m!=='number'|| !Number.isFinite(w.weather_code))throw new Error('Invalid Open-Meteo result');
+      const params=new URLSearchParams({latitude:String(city.latitude),longitude:String(city.longitude),current:'temperature_2m,weather_code',temperature_unit:'celsius',timezone:'Asia/Tokyo'});
+      const current=await fetchJSON(`https://api.open-meteo.com/v1/forecast?${params}`,'weather-openmeteo-current-v1-'+city.id,forceRefresh?0:weatherRefreshMinutes,5000,true);
+      const w=current?.data?.current;
+      const condition=readableWeather(w?.weather_code);
+      if(!Number.isFinite(w?.temperature_2m) || !condition)throw new Error('Invalid Open-Meteo result');
       if(seq!==weatherSequence)return;
-      const message=`${readableWeather(w.weather_code)}  ${Math.round(w.temperature_2m)}°C`;
+      const message=`${condition}  ${Math.round(w.temperature_2m*10)/10}°C`;
       const title=`${city.name} / ${text(w.time).replace('T',' ')} の推定現在天気`;
-      setWeather(message,'現在の推定天気 / Open-Meteo',title);
-      saveWeather(city,message,'Open-Meteo',title);
+      const time=text(w.time).match(/T(\d{2}:\d{2})/)?.[1];
+      setWeather(message,`${time?time+'時点':'現在'}（推定） / Open-Meteo`,title);
+      saveWeather(city,message,'Open-Meteo',title,current.savedAt);
       return;
     }catch { /* Firefox/network/CDN failures: fall through to different host */ }
+    if(seq!==weatherSequence)return;
     try{
-      if(!/^\d{6}$/.test(city.forecastCity||''))throw new Error('No alternate weather city');
-      const fallback=await fetchJSON(`https://weather.tsukumijima.net/api/forecast/city/${city.forecastCity}`,'weather-tsukumijima-'+city.id,settings.refreshMinutes||20,5500);
-      const first=Array.isArray(fallback?.forecasts)?fallback.forecasts[0]:null;
-      const telop=text(first?.telop).trim();
-      if(!telop)throw new Error('Invalid weather forecast');
+      const fallback=await fetchJSON(`https://wttr.in/${city.latitude},${city.longitude}?format=j1`,'weather-wttr-current-v1-'+city.id,forceRefresh?0:weatherRefreshMinutes,5500,true);
+      const w=fallback?.data?.current_condition?.[0];
+      const temperature=text(w?.temp_C).trim();
+      const condition=readableWttrWeather(Number(w?.weatherCode));
+      if(!/^[-+]?\d+(?:\.\d+)?$/.test(temperature) || !Number.isFinite(Number(temperature)) || !condition)throw new Error('Invalid wttr.in current weather');
       if(seq!==weatherSequence)return;
-      const max=first?.temperature?.max?.celsius;
-      const message=`予報 ${telop}${/^[-+]?\d+(?:\.\d+)?$/.test(String(max))?'  最高'+max+'°C':''}`;
-      const title=`${city.name} / 発表 ${text(fallback.publicTime).replace('T',' ').slice(0,16)}（現在の観測値ではありません）`;
-      setWeather(message,'今日の予報 / 気象庁データの二次提供',title);
-      saveWeather(city,message,'天気予報 API',title);
+      const message=`${condition}  ${Math.round(Number(temperature)*10)/10}°C`;
+      // Preserve the provider's time as supplied; do not invent a date or zone.
+      const observed=text(w.localObsDateTime || w.observation_time).trim();
+      const title=`${city.name} / wttr.in${observed?' / 観測 '+observed:''}`;
+      setWeather(message,'現在の天気 / wttr.in',title);
+      saveWeather(city,message,'wttr.in',title,fallback.savedAt);
       return;
     }catch { /* both providers unavailable */ }
     if(seq!==weatherSequence)return;
@@ -595,13 +618,25 @@
       option.value=city.id;
       citySelect.append(option);
     }
-    const saved=memoGet('hoshinohito-weather-city');
-    citySelect.value=cities.some(city=>city.id===saved)?saved:settings.weatherDefault || cities[0]?.id || '';
+    function restoreWeatherCity(){
+      const saved=memoGet('hoshinohito-weather-city');
+      const city=cities.find(city=>city.id===saved) || cities.find(city=>city.id===settings.weatherDefault) || cities[0];
+      citySelect.value=city?.id || '';
+    }
+    function refreshSelectedWeather(forceRefresh=false){
+      void updateWeather(cities.find(city=>city.id===citySelect.value),forceRefresh);
+    }
+    restoreWeatherCity();
     citySelect.addEventListener('change',()=>{
       memoSet('hoshinohito-weather-city',citySelect.value);
-      void updateWeather(cities.find(city=>city.id===citySelect.value));
+      refreshSelectedWeather();
     });
-    void updateWeather(cities.find(city=>city.id===citySelect.value));
+    refreshSelectedWeather();
+    window.setInterval(()=>{if(!document.hidden)refreshSelectedWeather(true);},weatherRefreshMinutes*60000);
+    document.addEventListener('visibilitychange',()=>{if(!document.hidden)refreshSelectedWeather();});
+    window.addEventListener('pageshow',event=>{
+      if(event.persisted){restoreWeatherCity();refreshSelectedWeather();}
+    });
   }
 
   // QUAKE: latest published quake information (NOT early-warning, NOT official

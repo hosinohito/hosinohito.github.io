@@ -19,35 +19,30 @@ window.SITE_DATA = {
       {
         "id": "tokyo",
         "name": "東京",
-        "forecastCity": "130010",
         "latitude": 35.68,
         "longitude": 139.69
       },
       {
         "id": "sendai",
         "name": "仙台",
-        "forecastCity": "040010",
         "latitude": 38.27,
         "longitude": 140.87
       },
       {
         "id": "sapporo",
         "name": "札幌",
-        "forecastCity": "016010",
         "latitude": 43.06,
         "longitude": 141.35
       },
       {
         "id": "osaka",
         "name": "大阪",
-        "forecastCity": "270000",
         "latitude": 34.69,
         "longitude": 135.5
       },
       {
         "id": "fukuoka",
         "name": "福岡",
-        "forecastCity": "400010",
         "latitude": 33.59,
         "longitude": 130.4
       }

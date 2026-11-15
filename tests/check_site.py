@@ -44,7 +44,11 @@ assert len(data['recent']) >= 5
 assert data['settings']['recentCount'] == 5
 assert len(data['settings']['featuredIds']) >= 2
 assert set(data['settings']['featuredIds']) <= {x['id'] for x in data['works']}
-assert all('forecastCity' in city and re.fullmatch(r'\d{6}', city['forecastCity']) for city in data['settings']['weatherCities'])
+cities = data['settings']['weatherCities']
+assert cities and len({city['id'] for city in cities}) == len(cities), 'Weather city IDs must be unique'
+assert all(isinstance(city.get('latitude'), (int, float)) and -90 <= city['latitude'] <= 90
+           and isinstance(city.get('longitude'), (int, float)) and -180 <= city['longitude'] <= 180
+           for city in cities), 'Weather cities need valid coordinates'
 assert data['settings']['maxTwitterInRecent'] <= 1
 assert all('date' in x and 'source' in x and 'title' in x and 'url' in x for x in data['recent'])
 assert all(re.fullmatch(r'\d{4}-\d{2}(?:-\d{2})?', x['date']) for x in data['recent'])
@@ -58,7 +62,8 @@ for group in ['works','notes','recent']:
     for record in data[group]:
         assert urlparse(record['url']).scheme == 'https', (group,record)
 assert 'createElement' in script and 'maxTwitterInRecent' in script
-assert 'weather.tsukumijima.net' in script and 'api.open-meteo.com' in script
+assert 'wttr.in' in script and 'api.open-meteo.com' in script
+assert 'weather.tsukumijima.net' not in script, 'Daily forecasts must not replace current weather'
 assert (ROOT/'ui-sound.js').exists()
 assert (ROOT/'data/twitter-snapshot.js').exists()
 assert (ROOT/'tools/update_twitter.py').exists()
@@ -68,5 +73,10 @@ assert 'MAX_FALLING=32' in script and 'MAX_SPARKLES=90' in script, 'Effect densi
 assert 'if(!effectsEnabled)clearEffects();' in script, 'Effect OFF must remove both falling stars and sparkles'
 assert '@media(max-width:730px)' in css
 assert (ROOT/'assets'/'favicon.svg').exists()
-assert (ROOT/'.nojekyll').exists()
+pages_workflows = list((ROOT/'.github'/'workflows').glob('*.yml'))
+assert (ROOT/'.nojekyll').exists() or any(
+    'actions/upload-pages-artifact@' in workflow.read_text('utf-8')
+    and 'actions/deploy-pages@' in workflow.read_text('utf-8')
+    for workflow in pages_workflows
+), 'Pages needs either .nojekyll or a workflow that publishes the static artifact directly'
 print(f'OK: HTML / works={len(data["works"])} / notes={len(data["notes"])} / recent={len(data["recent"])} / sources / interaction guards')

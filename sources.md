@@ -44,8 +44,9 @@
 Recent WorkのTwitter投稿は、個別の制作告知だと判断できた場合だけ掲載します。取得できない場合は投稿数を0件にし、プロフィールの埋め込みは別欄として残します。GitHub更新も、公開リポジトリの最終push日時であり、リリース日ではありません。
 
 ## 利用する公開API
-- Open-Meteo 現在天気: https://open-meteo.com/
-- 天気予報 API（気象庁データの二次提供）: https://weather.tsukumijima.net/
+- Open-Meteo 現在天気（15分刻みのモデルデータによる推定）: https://open-meteo.com/en/docs
+- wttr.in 現在天気（緯度経度指定、JSONの `current_condition` を利用）: https://github.com/chubin/wttr.in#json-output
+- wttr.in 天気コード: https://github.com/chubin/wttr.in/blob/master/share/translations/en/conditions.txt
 - P2P地震情報: https://www.p2pquake.net/
 - Twitter公式埋め込み: https://publish.x.com/
 - FxTwitter（公開投稿の読み取り）: https://github.com/FxEmbed/FxEmbed
