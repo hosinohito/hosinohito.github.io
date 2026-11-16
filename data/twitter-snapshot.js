@@ -1,36 +1,36 @@
 /* Generated from public posts. Edit data/content.js for site-owned works. */
 window.TWITTER_SNAPSHOT = {
-  "fetchedAt": "2026-11-16T03:54+09:00",
+  "fetchedAt": "2026-11-16T15:35+09:00",
   "posts": [
     {
-      "id": "2121993167532900522",
-      "text": "うまくいったら初めてのAIを利用したVRC用アセットを頒布するかも。",
-      "date": "Sun Nov 15 15:46",
+      "id": "2122202369249497181",
+      "text": "なかなか進まず。",
+      "date": "Mon Nov 16 05:37",
       "media": [
         {
-          "url": "https://pbs.twimg.com/media/HXLVhWHaoAAXNck.png?name=orig"
+          "url": "https://pbs.twimg.com/media/HXOTyqFbAAAA6ph.png?name=orig"
         }
       ]
     },
     {
-      "id": "2121724345181671535",
-      "text": "ほーむぺーじできた。",
-      "date": "Sat Nov 14 21:57"
+      "id": "2122193568978878551",
+      "text": "mmdとかの時代にモデリングの知識があったら楽しかったんだろうなあ。",
+      "date": "Mon Nov 16 05:02"
     },
     {
-      "id": "2121724463956082889",
-      "text": "https://hosinohito.github.io/",
-      "date": "Sat Nov 14 21:58"
+      "id": "2122161302366036312",
+      "text": "簡単なことだと思うんだけどなあ。人間、できないんだよなあ。",
+      "date": "Mon Nov 16 02:54"
     },
     {
-      "id": "2121540760315293948",
-      "text": "たなかの色気は44％\n【清楚な色気】\n・言葉遣いや仕草が丁寧\n・上品で誰からも好印象\n\nみんなもやってみてね！【色気タイプ診断】#Makko\nhttps://ma-kko.com/shindan/Y6Yo3bBmZu",
-      "date": "Sat Nov 14 09:48"
+      "id": "2122138708162011223",
+      "text": "空気がちょうどいい湿度感で気持ちいい。雲から太陽が出てきて超まぶしい。",
+      "date": "Mon Nov 16 01:24"
     },
     {
-      "id": "2121449281399963823",
-      "text": "宇宙の存在は脆弱",
-      "date": "Sat Nov 14 03:44"
+      "id": "2122136834444865716",
+      "text": "何らかのこだわりを持ってる人って、実は論理的な一貫性を持ってないことが多くて、それは私。",
+      "date": "Mon Nov 16 01:17"
     }
   ]
 };
