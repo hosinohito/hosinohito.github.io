@@ -1,7 +1,12 @@
 /* Generated from public posts. Edit data/content.js for site-owned works. */
 window.TWITTER_SNAPSHOT = {
-  "fetchedAt": "2026-11-19T16:29+09:00",
+  "fetchedAt": "2026-11-20T05:41+09:00",
   "posts": [
+    {
+      "id": "2123511931898355985",
+      "text": "三ツ矢サイダーオレンジ味と6pチーズを摂取し始めたら爪がガタガタになってたのが治った。生活習慣はむしろ悪化してるので、何らかの栄養素が効いてる可能性が高い。",
+      "date": "Thu Nov 19 20:21"
+    },
     {
       "id": "2123296471583989824",
       "text": "nginxは、ﾝｷﾞﾝｸｽとよみます。",
@@ -26,11 +31,6 @@ window.TWITTER_SNAPSHOT = {
       "id": "2123002138272120872",
       "text": "今日はビートセイバー！今見てる配信が終わったら夜に配信する。みんなきてね！",
       "date": "Wed Nov 18 10:35"
-    },
-    {
-      "id": "2122975955862081732",
-      "text": "がりがりくんなしあじたべたい",
-      "date": "Wed Nov 18 08:51"
     }
   ]
 };
