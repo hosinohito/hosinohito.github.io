@@ -1,6 +1,6 @@
 /* Generated from public posts. Edit data/content.js for site-owned works. */
 window.TWITTER_SNAPSHOT = {
-  "fetchedAt": "2026-11-21T16:14+09:00",
+  "fetchedAt": "2026-11-22T04:19+09:00",
   "posts": [
     {
       "id": "2123984824667148496",
