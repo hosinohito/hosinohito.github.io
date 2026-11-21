@@ -1,36 +1,41 @@
 /* Generated from public posts. Edit data/content.js for site-owned works. */
 window.TWITTER_SNAPSHOT = {
-  "fetchedAt": "2026-11-20T05:41+09:00",
+  "fetchedAt": "2026-11-21T16:14+09:00",
   "posts": [
     {
-      "id": "2123511931898355985",
-      "text": "三ツ矢サイダーオレンジ味と6pチーズを摂取し始めたら爪がガタガタになってたのが治った。生活習慣はむしろ悪化してるので、何らかの栄養素が効いてる可能性が高い。",
-      "date": "Thu Nov 19 20:21"
-    },
-    {
-      "id": "2123296471583989824",
-      "text": "nginxは、ﾝｷﾞﾝｸｽとよみます。",
-      "date": "Thu Nov 19 06:05"
-    },
-    {
-      "id": "2123293883937546353",
-      "text": "フェイスブックがあまりにも気持ち悪すぎるのでmuseを触れない。museが爆発するか、私が旧世代になるかのどちらか。",
-      "date": "Thu Nov 19 05:54"
-    },
-    {
-      "id": "2123106937240006934",
-      "text": "みんなありがと～ひさしぶりのVRC配信楽しかった～",
-      "date": "Wed Nov 18 17:31",
+      "id": "2123984824667148496",
+      "text": "大阪来ました",
+      "date": "Sat Nov 21 03:40",
       "media": [
         {
-          "url": "https://pbs.twimg.com/media/HXbKctXbMAAZ4aK.jpg?name=orig"
+          "url": "https://pbs.twimg.com/media/HXno676bAAIzJ76.jpg?name=orig"
         }
       ]
     },
     {
-      "id": "2123002138272120872",
-      "text": "今日はビートセイバー！今見てる配信が終わったら夜に配信する。みんなきてね！",
-      "date": "Wed Nov 18 10:35"
+      "id": "2123960471359545620",
+      "text": "初めて聞いた。ビートセイバーも長生きにいい可能性。",
+      "date": "Sat Nov 21 02:03"
+    },
+    {
+      "id": "2123945182496489944",
+      "text": "ふん。",
+      "date": "Sat Nov 21 01:02",
+      "media": [
+        {
+          "url": "https://pbs.twimg.com/media/HXnE4aaaAAAC6mX.png?name=orig"
+        }
+      ]
+    },
+    {
+      "id": "2123937514180481401",
+      "text": "wow冬のにおい",
+      "date": "Sat Nov 21 00:32"
+    },
+    {
+      "id": "2123878417347248579",
+      "text": "//このコメントを消すと動かなくなる",
+      "date": "Fri Nov 20 20:37"
     }
   ]
 };
