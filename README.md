@@ -52,6 +52,8 @@ Recent Workは手動の公開履歴と、取得できたGitHubのリポジトリ
 2. GitHub Pagesの Source を **GitHub Actions** に変更します（`Deploy from a branch` のままではActionsのボットpushだけでPagesが再ビルドされません）。
 3. Actionsのワークフローを有効にすると、push時と6時間ごとの実行で公開投稿の控えの取得・Pagesデプロイを試みます。API側が不調でも保存済みの表示を維持します。
 
+Pagesへの公開が失敗した場合は、10秒待って一度だけ再試行します。再試行も失敗した場合は、ワークフローが失敗として記録されます。
+
 このオプションは必須ではありません。GitHub API・FxTwitter API・外部画像の利用可能性は各提供元に依存します。自動更新のために個人認証用CookieやTwitter APIキーは保存しません。
 
 ## フォルダ構成・責務

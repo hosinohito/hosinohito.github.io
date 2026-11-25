@@ -14,7 +14,7 @@ window.SITE_DATA = {
     "githubUser": "hosinohito",
     "recentCount": 5,
     "weatherDefault": "tokyo",
-    "featuredIds": ["booth-9137355", "github-tanakacap"],
+    "featuredIds": ["booth-9137355", "github-tanayomi"],
     "weatherCities": [
       {
         "id": "tokyo",
@@ -149,6 +149,38 @@ window.SITE_DATA = {
         "Beat Saber",
         "3D空間",
         "プラットフォーム"
+      ]
+    },
+    {
+      "id": "github-tanayomi",
+      "group": "code",
+      "title": "たなよみ",
+      "category": "チャット読み上げ",
+      "date": "2026.11",
+      "description": "Twitch・YouTubeのチャットを日本語で読み上げるアプリ。OS標準音声やUTAU音源に対応し、C#とAvaloniaで開発。",
+      "url": "https://github.com/hosinohito/tanayomi",
+      "image": "",
+      "symbol": "♫",
+      "tags": [
+        "Twitch",
+        "YouTube",
+        "UTAU"
+      ]
+    },
+    {
+      "id": "github-photostudio",
+      "group": "code",
+      "title": "BOOTH Photo Studio",
+      "category": "Unity撮影ツール",
+      "date": "2026.11",
+      "description": "VRChat向けアバターやアクセサリーの商品画像・紹介動画を、Unity Editor上で撮影するツール。C#ソースと撮影プリセットを公開。",
+      "url": "https://github.com/hosinohito/photoStudio",
+      "image": "",
+      "symbol": "◎",
+      "tags": [
+        "Unity",
+        "VRChat",
+        "BOOTH"
       ]
     },
     {
@@ -293,6 +325,20 @@ window.SITE_DATA = {
     }
   ],
   "recent": [
+    {
+      "id": "github-tanayomi-20261125",
+      "date": "2026-11-25",
+      "source": "GitHub",
+      "title": "チャット読み上げアプリ「たなよみ」を更新",
+      "url": "https://github.com/hosinohito/tanayomi"
+    },
+    {
+      "id": "github-photostudio-20261115",
+      "date": "2026-11-15",
+      "source": "GitHub",
+      "title": "BOOTH Photo Studioのソースを公開",
+      "url": "https://github.com/hosinohito/photoStudio"
+    },
     {
       "id": "booth-sakura-2026",
       "date": "2026-11-13",

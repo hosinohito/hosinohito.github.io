@@ -51,3 +51,8 @@ Recent WorkのTwitter投稿は、個別の制作告知だと判断できた場�
 - Twitter公式埋め込み: https://publish.x.com/
 - FxTwitter（公開投稿の読み取り）: https://github.com/FxEmbed/FxEmbed
 - Twitter投稿の静的抜粋: https://www.sotwe.com/tanakamitaina （2026-11-15に閲覧可能な公開記載を参照。個別URL未確認のものはプロフィールURLを設定）
+
+## 追加掲載の確認（2026-11-25）
+
+- たなよみ: https://github.com/hosinohito/tanayomi 。公開リポジトリとREADMEで、Twitch・YouTubeのチャット読み上げ、OS標準音声・UTAU音源、C#・Avaloniaでの開発を確認。Recent Workの日付は [2026-11-25の更新](https://github.com/hosinohito/tanayomi/commit/32adeda088b4b5871f714d69caf817d7ef69f6b3) に基づきます。
+- BOOTH Photo Studio: https://github.com/hosinohito/photoStudio 。公開リポジトリとREADMEで、Unity Editor用の商品画像・紹介動画の撮影ツール、C#ソースと撮影プリセットを確認。Recent Workの日付は [2026-11-15のソース追加](https://github.com/hosinohito/photoStudio/commit/12410e1f69821ca014506044fa7f9e140906b4c8) に基づきます。Unityプロジェクト一式や動作確認済みの配布版としては紹介していません。
