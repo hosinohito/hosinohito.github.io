@@ -56,3 +56,8 @@ Recent WorkのTwitter投稿は、個別の制作告知だと判断できた場�
 
 - たなよみ: https://github.com/hosinohito/tanayomi 。公開リポジトリとREADMEで、Twitch・YouTubeのチャット読み上げ、OS標準音声・UTAU音源、C#・Avaloniaでの開発を確認。Recent Workの日付は [2026-11-25の更新](https://github.com/hosinohito/tanayomi/commit/32adeda088b4b5871f714d69caf817d7ef69f6b3) に基づきます。
 - BOOTH Photo Studio: https://github.com/hosinohito/photoStudio 。公開リポジトリとREADMEで、Unity Editor用の商品画像・紹介動画の撮影ツール、C#ソースと撮影プリセットを確認。Recent Workの日付は [2026-11-15のソース追加](https://github.com/hosinohito/photoStudio/commit/12410e1f69821ca014506044fa7f9e140906b4c8) に基づきます。Unityプロジェクト一式や動作確認済みの配布版としては紹介していません。
+
+## 追加掲載の確認（2026-11-26）
+
+- [こだま板（仮）](https://github.com/hosinohito/kodamaita): 公開リポジトリと [1.2.1のリリース](https://github.com/hosinohito/kodamaita/releases/tag/v1.2.1) を確認。参加端末の保管ノード同士で投稿を共有する掲示板として紹介。IPアドレスと投稿が紐づくこと、投稿を削除できないことも配布ページの記載に基づきます。
+- 1.2.1の公開日時は2026-11-26 19:00 JST。Windows・Android・macOS・Linux向けの配布ファイルを確認。動作確認済みと記載されているのはWindows・Androidで、macOS・Linuxは対象CPU向けのビルドです。作品からは今後の配布版も見つけられるReleases一覧へ、Recent Workからは1.2.1のページへリンクします。

@@ -14,7 +14,7 @@ window.SITE_DATA = {
     "githubUser": "hosinohito",
     "recentCount": 5,
     "weatherDefault": "tokyo",
-    "featuredIds": ["booth-9137355", "github-tanayomi"],
+    "featuredIds": ["booth-9137355", "github-kodamaita"],
     "weatherCities": [
       {
         "id": "tokyo",
@@ -149,6 +149,22 @@ window.SITE_DATA = {
         "Beat Saber",
         "3D空間",
         "プラットフォーム"
+      ]
+    },
+    {
+      "id": "github-kodamaita",
+      "group": "code",
+      "title": "こだま板（仮）",
+      "category": "分散型掲示板",
+      "date": "2026.11",
+      "description": "参加者が運用する保管ノードで投稿を共有する掲示板。Windows・Androidなどのアプリを配布。投稿はIPアドレスと紐づき、削除できません。",
+      "url": "https://github.com/hosinohito/kodamaita/releases",
+      "image": "",
+      "symbol": "◌",
+      "tags": [
+        "掲示板",
+        "Windows",
+        "Android"
       ]
     },
     {
@@ -325,6 +341,13 @@ window.SITE_DATA = {
     }
   ],
   "recent": [
+    {
+      "id": "github-kodamaita-v1-2-1",
+      "date": "2026-11-26",
+      "source": "GitHub",
+      "title": "こだま板（仮）1.2.1を公開",
+      "url": "https://github.com/hosinohito/kodamaita/releases/tag/v1.2.1"
+    },
     {
       "id": "github-tanayomi-20261125",
       "date": "2026-11-25",

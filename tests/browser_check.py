@@ -54,7 +54,7 @@ with sync_playwright() as p:
     desktop.route('**/*',lambda route:route.abort())
     desktop.on('pageerror',lambda err:errors.append(str(err)))
     desktop.set_content(html,wait_until='domcontentloaded')
-    desktop.wait_for_function('document.querySelectorAll(".work-entry").length === 14')
+    desktop.wait_for_function('document.querySelectorAll(".work-entry").length === 15')
     desktop.wait_for_function('document.querySelectorAll(".tweet-entry").length >= 1')
     assert desktop.locator(".featured-entry").count()==2
     assert desktop.locator(".tweet-entry").count()>=1
@@ -62,7 +62,7 @@ with sync_playwright() as p:
     assert '29.9' not in desktop.locator('#weather-display').inner_text()
     assert '予報' not in desktop.locator('#weather-display').inner_text()
     assert not errors,errors
-    assert desktop.locator('.work-entry').count()==14
+    assert desktop.locator('.work-entry').count()==15
     # Stars cover the viewport; sparkle density increases on pointer movement.
     desktop.wait_for_function('document.querySelectorAll(".falling-star").length >= 8')
     assert desktop.locator('.falling-star').count() <= 32
@@ -112,7 +112,7 @@ with sync_playwright() as p:
     assert desktop.locator('#no-results').is_visible()
     desktop.locator('#work-search').fill('')
     desktop.locator('[data-filter="all"]').click()
-    assert desktop.locator('.work-entry:visible').count()==14
+    assert desktop.locator('.work-entry:visible').count()==15
     samples=desktop.evaluate('''() => {
       const p=window.__siteChecks;
       const post=(id,user,text)=>({type:'status',id,author:{screen_name:user},created_at:'2026-11-15T04:00:00Z',text});
@@ -122,9 +122,18 @@ with sync_playwright() as p:
         post('1234567890123456791','someoneelse','新作を公開しました https://booth.pm/ja/items/9137355')
       ];
       const input=Array.from({length:10},(_,i)=>({id:'u'+i,source:i<8?'Twitter':'BOOTH',date:'2026-11-'+String(15-i).padStart(2,'0'),title:'item'+i,url:'https://twitter.com/tanakamitaina/status/'+(1000+i)}));
-      return {yes:!!p.makeTwitterRecent(test[0],'tanakamitaina'),no1:p.makeTwitterRecent(test[1],'tanakamitaina')===null,no2:p.makeTwitterRecent(test[2],'tanakamitaina')===null,twitterCount:p.composeRecent(input).filter(row=>row.source==='Twitter').length};
+      // API success must not push a confirmed release out of the five visible rows.
+      const sameDay=[
+        {id:'release',date:'2026-11-26',source:'GitHub',title:'こだま板（仮）1.2.1を公開',url:'https://github.com/hosinohito/kodamaita/releases/tag/v1.2.1'},
+        {id:'auto-home',date:'2026-11-26',source:'GitHub',title:'hosinohito.github.io を更新',url:'https://github.com/hosinohito/hosinohito.github.io'},
+        {id:'auto-kodamaita',date:'2026-11-26',source:'GitHub',title:'kodamaita を更新',url:'https://github.com/hosinohito/kodamaita'},
+        {id:'booth-new',date:'2026-11-25',source:'BOOTH',title:'作品を公開',url:'https://booth.pm/ja/items/9137355'},
+        {id:'note-old',date:'2026-11-24',source:'note',title:'記事を公開',url:'https://note.com/tanakamitaina'},
+        {id:'booth-old',date:'2026-11-23',source:'BOOTH',title:'作品を更新',url:'https://booth.pm/ja/items/6030498'},
+      ];
+      return {yes:!!p.makeTwitterRecent(test[0],'tanakamitaina'),no1:p.makeTwitterRecent(test[1],'tanakamitaina')===null,no2:p.makeTwitterRecent(test[2],'tanakamitaina')===null,twitterCount:p.composeRecent(input).filter(row=>row.source==='Twitter').length,recentIds:p.composeRecent(sameDay).map(row=>row.id)};
     }''')
-    assert samples=={'yes':True,'no1':True,'no2':True,'twitterCount':1},samples
+    assert samples=={'yes':True,'no1':True,'no2':True,'twitterCount':1,'recentIds':['release','auto-home','booth-new','note-old','booth-old']},samples
     old=desktop.locator('html').get_attribute('data-tone')
     desktop.locator('#tone-button').click()
     assert desktop.locator('html').get_attribute('data-tone')!=old
@@ -135,7 +144,7 @@ with sync_playwright() as p:
     mobile.route('**/*',lambda route:route.abort())
     mobile.on('pageerror',lambda err:errors.append(str(err)))
     mobile.set_content(html,wait_until='domcontentloaded')
-    mobile.wait_for_function('document.querySelectorAll(".work-entry").length === 14')
+    mobile.wait_for_function('document.querySelectorAll(".work-entry").length === 15')
     mobile.screenshot(path='/mnt/data/hoshinohito-v9-mobile.png',full_page=True)
     assert not mobile.evaluate('document.documentElement.scrollWidth > window.innerWidth + 3'),'Mobile horizontal overflow'
     # Offline / third-party outage: manual records and all works remain visible.
@@ -149,7 +158,7 @@ with sync_playwright() as p:
     assert offline.locator('.recent-item').count()==5
     assert offline.locator('.featured-entry').count()==2
     assert offline.locator('.tweet-entry').count()>=1
-    assert offline.locator('.work-entry').count()==14
+    assert offline.locator('.work-entry').count()==15
     assert offline.locator('.note-entry').count()==7
     assert offline.locator('.recent-item .source-twitter').count()==0
     assert '取得できません' in offline.locator('#quake-display').inner_text()

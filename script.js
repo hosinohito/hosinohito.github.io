@@ -207,7 +207,8 @@
       seen.add(key);
       return true;
     });
-    unique.sort((a,b)=>parseDate(b.date)-parseDate(a.date) || a.title.localeCompare(b.title,'ja'));
+    // Keep the confirmed listings first when API updates fall on the same day.
+    unique.sort((a,b)=>parseDate(b.date)-parseDate(a.date));
     const chosen = [];
     const used = {};
     const cap = Math.max(1,Math.min(10,max));
@@ -226,7 +227,7 @@
         if(chosen.length>=cap) break;
       }
     }
-    return chosen.sort((a,b)=>parseDate(b.date)-parseDate(a.date) || a.title.localeCompare(b.title,'ja'));
+    return chosen.sort((a,b)=>parseDate(b.date)-parseDate(a.date));
   }
   function renderRecent(){
     const root = byId('recent-list');
